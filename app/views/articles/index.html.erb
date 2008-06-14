@@ -1,0 +1,8 @@
+<% heading 'Articles in ' + span(enclosing_resource.name) %>
+
+<% toolbar_link glyph('add') + ' New article', new_resource_path %>
+
+<h3>Articles</h3>
+<% resources.each do |article| %>
+  <%= link_to article.name, resource_path(article) %><br />
+<% end %>

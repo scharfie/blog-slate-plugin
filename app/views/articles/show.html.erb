@@ -1,0 +1,9 @@
+<% heading 'Viewing article ' + span(resource.name) %>
+
+<% toolbar_link glyph('pencil') + ' Edit', edit_resource_path(resource) %>
+<% toolbar_link glyph('world') + ' Publish', publish_resource_path(resource) unless resource.published? %>
+<% toolbar_link glyph('world_delete') + ' Unpublish', unpublish_resource_path(resource) if resource.published?  %>
+
+<div id="article">
+  <%= resource.body_html %>
+</div>

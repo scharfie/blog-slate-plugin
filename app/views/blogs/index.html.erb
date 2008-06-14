@@ -1,0 +1,7 @@
+<% heading 'Blogs' %>
+<% toolbar_link glyph('add') + ' New blog', new_resource_path %>
+
+<h3>My Blogs</h3>
+<% resources.each do |blog| %>
+  <%= link_to blog.name, resource_path(blog) %><br />
+<% end %>
