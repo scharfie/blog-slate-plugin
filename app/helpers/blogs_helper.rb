@@ -36,7 +36,8 @@ module BlogsHelper
   end
   
   def show_recent_articles
-    @articles = @blog.articles.recent
+    scope = editor? && slate? ? :updated : :published
+    @articles = @blog.articles.send(scope, :limit => 5)
     partial :article, :collection => @articles
   end
   
@@ -48,7 +49,7 @@ module BlogsHelper
   # Returns nicely formatted date for the article's
   # published date
   def article_date(article)
-    article.published_on.eztime(':nday, :nmonth :day:ordinal :year &mdash; :hour12::minute :meridian')
+    (article.published_on || article.updated_at).eztime(':nday, :nmonth :day:ordinal :year &mdash; :hour12::minute :meridian')
   end
   
   def article_tools(article)

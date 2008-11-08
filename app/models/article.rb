@@ -5,13 +5,13 @@ class Article < ActiveRecord::Base
   # Associations
   belongs_to :blog
   
+  # Scopes
+  named_scope :published, :conditions => ['published_on <= ?', Time.now],
+    :order => 'published_on DESC'
+  named_scope :updated, :conditions => ['updated_at <= ?', Time.now],
+    :order => 'updated_at DESC'
+
 public
-  # Returns recently published articles
-  def self.recent(limit=5)
-    find :all, :conditions => ['published_on <= ?', Time.now], 
-      :limit => limit, :order => 'published_on DESC'
-  end
-  
   def self.find_by_date(year, month=nil, day=nil)
     conditions = [connection.year('published_on') + ' = ?']
     variables  = [year.to_i]

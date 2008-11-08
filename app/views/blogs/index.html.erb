@@ -11,7 +11,7 @@
         <%= link_to glyph('delete'), resource_path(blog), :method => :delete, :confirm => 'Destroy this blog?', :title => 'Delete this blog' %>
       </span>    
       <ul class="articles">
-        <% blog.articles.recent(10).each do |article| %>
+        <% blog.articles.published(:limit => 10).each do |article| %>
           <li><%= link_to article.name, space_page_path(@space, blog.page, hash_for_periodical_path(article)) %></li>
         <% end %>
       </ul>  
