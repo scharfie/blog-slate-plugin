@@ -1,8 +1,0 @@
-<% heading 'Editing article ' + span(resource.name) %>
-<% toolbar_link glyph('arrow_left') + ' Articles', resources_path %>
-
-<% form_for_resource do |form| %>
-  <%= 'This article is currently published.' if resource.published? %>
-  <%= render :partial => 'form', :object => form %>
-  <%= render :partial => 'actions', :locals => { :form => form } %>
-<% end %>
