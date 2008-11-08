@@ -36,8 +36,8 @@ module BlogsHelper
   end
   
   def show_recent_articles
-    scope = editor? && slate? ? :updated : :published
-    @articles = @blog.articles.send(scope, :limit => 5)
+    # scope = editor? && slate? ? :updated : :published
+    @articles = @blog.articles.published(:limit => 5)
     partial :article, :collection => @articles
   end
   
