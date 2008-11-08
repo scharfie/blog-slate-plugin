@@ -4,10 +4,10 @@ one:
   blog_id: 1
   body: MyText
   body_html: MyText
-  published_on: 2008-02-21 16:08:32
+  published_at: 2008-02-21 16:08:32
 
 two:
   blog_id: 1
   body: MyText
   body_html: MyText
-  published_on: 2008-02-21 16:08:32
+  published_at: 2008-02-21 16:08:32

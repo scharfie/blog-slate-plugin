@@ -6,7 +6,7 @@ class CreateArticles < ActiveRecord::Migration
       t.string :permalink
       t.text :body
       t.text :body_html
-      t.datetime :published_on
+      t.datetime :published_at
 
       t.timestamps
     end

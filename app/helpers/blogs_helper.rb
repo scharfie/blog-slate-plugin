@@ -49,7 +49,7 @@ module BlogsHelper
   # Returns nicely formatted date for the article's
   # published date
   def article_date(article)
-    (article.published_on || article.updated_at).eztime(':nday, :nmonth :day:ordinal :year &mdash; :hour12::minute :meridian')
+    (article.published_at || article.updated_at).eztime(':nday, :nmonth :day:ordinal :year &mdash; :hour12::minute :meridian')
   end
   
   def article_tools(article)
