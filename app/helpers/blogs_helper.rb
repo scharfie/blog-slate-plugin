@@ -1,6 +1,4 @@
 module BlogsHelper
-  include PeriodicalsHelper
-  
   # IDEA: abstract the periodical stuff into a DSL-like syntax:
   # 
   # periodicals_for :article, :scope => Proc.new { @blog.articles }
@@ -38,7 +36,7 @@ module BlogsHelper
   end
   
   def show_recent_articles
-    @articles = @blog.recent_articles
+    @articles = @blog.articles.recent
     partial :article, :collection => @articles
   end
   
@@ -51,5 +49,9 @@ module BlogsHelper
   # published date
   def article_date(article)
     article.published_on.eztime(':nday, :nmonth :day:ordinal :year &mdash; :hour12::minute :meridian')
+  end
+  
+  def article_tools(article)
+    partial :article_tools, :locals => { :article => article }
   end
 end

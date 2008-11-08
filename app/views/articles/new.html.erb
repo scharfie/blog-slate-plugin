@@ -1,8 +1,0 @@
-<% heading 'Creating new article for ' + span(enclosing_resource.name) %>
-
-<% form_for_resource do |form| %>
-  <%= render :partial => 'form', :object => form %>
-  <% form.actions do %>
-    <%= submit_tag 'Save' %>
-  <% end %>  
-<% end %>

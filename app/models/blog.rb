@@ -2,6 +2,7 @@ class Blog < ActiveRecord::Base
   # Associations
   belongs_to :space
   has_many :articles
+  has_one :page, :as => :behavior
 
   # Callbacks
   after_create :create_page_for_blog
@@ -16,10 +17,6 @@ protected
   end
   
 public
-  # Returns recently published articles
-  def recent_articles(limit=5)
-    articles.recent(limit)
-  end
 end
 
 Space.has_many :blogs

@@ -1,7 +1,20 @@
 <% heading 'Blogs' %>
 <% toolbar_link glyph('add') + ' New blog', new_resource_path %>
 
-<h3>My Blogs</h3>
-<% resources.each do |blog| %>
-  <%= link_to blog.name, resource_path(blog) %><br />
-<% end %>
+<ul id="blogs" class="tree">
+  <% resources.each do |blog| %>
+    <li>
+      <%= link_to blog.name, space_page_path(@space, blog.page), :class => 'item' %>
+      <span class="actions">
+        -
+        <%= link_to 'Edit', edit_resource_path(blog) %>
+        <%= link_to glyph('delete'), resource_path(blog), :method => :delete, :confirm => 'Destroy this blog?', :title => 'Delete this blog' %>
+      </span>    
+      <ul class="articles">
+        <% blog.articles.recent(10).each do |article| %>
+          <li><%= link_to article.name, space_page_path(@space, blog.page, hash_for_periodical_path(article)) %></li>
+        <% end %>
+      </ul>  
+    </li>
+  <% end %>
+</ul>

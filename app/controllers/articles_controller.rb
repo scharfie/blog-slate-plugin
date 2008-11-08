@@ -1,4 +1,4 @@
-class ArticlesController < ApplicationController
+class ArticlesController < ResourcesController
   resources_controller_for :articles, :in => [:space, :blog]
   current_tab 'Blogs'
   

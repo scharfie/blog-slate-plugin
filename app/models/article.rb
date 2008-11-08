@@ -53,6 +53,11 @@ public
     published_on != nil
   end
   
+  # Returns custom DOM ID
+  def dom_id
+    ['article', id].join('-')
+  end
+  
   class Archive
     delegate :year, :month, :eztime, :to => :date
     attr_accessor :date

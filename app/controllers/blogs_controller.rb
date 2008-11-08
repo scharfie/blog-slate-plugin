@@ -1,6 +1,6 @@
-class BlogsController < Slate::Controller
+class BlogsController < ResourcesController
   resources_controller_for :blogs, :in => :space
-  
+
 public
   def show
     redirect_to resource_articles_path(params[:id])
