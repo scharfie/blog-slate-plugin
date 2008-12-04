@@ -26,18 +26,18 @@ module BlogsHelper
   end
   
   def show_articles_by_month
-    @articles = @blog.articles.find_by_date(params[:year], params[:month])
+    @articles = @blog.articles.published.on_date(params[:year], params[:month])
     partial :articles_by_month, :object => @articles
   end
   
   def show_article_by_slug
-    @article = @blog.articles.find_by_permalink(params[:slug])
+    @article = @blog.articles.published.find_by_permalink(params[:slug])
     partial :article, :object => @article
   end
   
   def show_recent_articles
     # scope = editor? && slate? ? :updated : :published
-    @articles = @blog.articles.published(:limit => 5)
+    @articles = @blog.articles.published.all(:limit => 5, :order => 'published_at DESC')
     partial :article, :collection => @articles
   end
   

@@ -12,13 +12,13 @@ public
     space_page_url @space, @blog.page,
       hash_for_periodical_path(resource)
   end
-
+  
   # Publishes the article
   def publish
     self.resource = find_resource
     resource.publish!
     flash[:notice] = 'Succesfully published article!'
-    redirect_to resource_path(resource)
+    redirect_to resource_url
   end
   
   # Unpublishes the article
@@ -26,6 +26,6 @@ public
     self.resource = find_resource
     resource.unpublish!
     flash[:notice] = 'Successfully unpublished article!'
-    redirect_to resource_path(resource)
+    redirect_to resource_url
   end
 end
