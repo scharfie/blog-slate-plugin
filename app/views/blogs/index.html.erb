@@ -7,7 +7,7 @@
       <%= link_to blog.name, space_page_path(@space, blog.page), :class => 'item' %>
       <span class="actions">
         -
-        <%= link_to 'Edit', edit_resource_path(blog) %>
+        <%= link_to glyph('pencil'), edit_resource_path(blog) %>
         <%= link_to glyph('add'), new_resource_article_path(blog), :title => 'New article' %>
         <%= link_to glyph('delete'), resource_path(blog), :method => :delete, :confirm => 'Destroy this blog?', :title => 'Delete this blog' %>
       </span>  
@@ -16,8 +16,14 @@
           <td valign="top">
             <ul class="articles">
               <li><small>Recently published:</small></li>
-              <% blog.articles.published(:limit => 10).each do |article| %>
-                <li><%= link_to article.name, space_page_path(@space, blog.page, hash_for_periodical_path(article)) %></li>
+              <% blog.articles.published.all(:limit => 10, :order => 'published_at DESC').each do |article| %>
+                <li>
+                  <%= link_to article.name, space_page_path(@space, blog.page, hash_for_periodical_path(article)) %>
+                  <span class="actions">
+                  -
+                  <%= link_to glyph('pencil'), edit_resource_article_path(blog, article.draft_version) %>
+                  </span>  
+                </li>
               <% end %>
             </ul>
           </td>
@@ -25,7 +31,13 @@
             <ul class="articles">
               <li><small>Never published:</small></li>
               <% blog.articles.unpublished.each do |article| %>
-                <li><%= link_to article.name, space_page_path(@space, blog.page, hash_for_periodical_path(article)) %></li>
+                <li>
+                  <%= link_to article.name, space_page_path(@space, blog.page, hash_for_periodical_path(article)) %>
+                  <span class="actions">
+                  -
+                  <%= link_to glyph('pencil'), edit_resource_article_path(blog, article.draft_version) %>
+                  </span>
+                </li>  
               <% end %>
             </ul>  
           </td>

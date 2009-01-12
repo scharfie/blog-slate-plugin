@@ -32,6 +32,9 @@ module BlogsHelper
   
   def show_article_by_slug
     @article = @blog.articles.published.find_by_permalink(params[:slug])
+    if editor? && @article.nil?
+      @article = @blog.articles.unpublished.find_by_permalink(params[:slug])
+    end  
     partial :article, :object => @article
   end
   

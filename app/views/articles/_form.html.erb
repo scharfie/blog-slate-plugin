@@ -1,6 +1,31 @@
 <% toolbar_link(glyph('arrow_left') + ' Articles', resources_path) %>
 
-<%#= content_tag(:p, 'This article is currently published.', :class => 'info') if resource.published? %>
 <%= form.text_field :name %>
 <%= form.text_area :body, :style => 'width: 600px' %>
-<%= form.datetime_select :published_at, :label => 'Publish time' %>
+<%= form.datetime_select :published_at, :label => 'Publish time', :tip => '(<a id="set_to_now" href="#">Set to now</a>)' %>
+
+<script type="text/javascript" charset="utf-8">
+Time = function(date) {
+  this.date   = date
+  this.year   = this.date.getFullYear() 
+  this.month  = this.date.getMonth() 
+  this.day    = this.date.getDate() 
+  this.hour   = this.date.getHours() 
+  this.minute = this.date.getMinutes() 
+  return this
+}
+
+Time.now = function() { return new Time(new Date()) }
+
+$(function() {
+  $('#set_to_now').click(function() {
+    var now = Time.now()
+    $('#article_published_at_1i').val(now.year)
+    $('#article_published_at_2i').val(now.month)
+    $('#article_published_at_3i').val(now.day)
+    $('#article_published_at_4i').val(now.hour)
+    $('#article_published_at_5i').val(now.minute)
+    return false
+  })
+});
+</script>

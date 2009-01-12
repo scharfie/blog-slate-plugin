@@ -3,6 +3,11 @@ class ArticlesController < ResourcesController
   current_tab 'Blogs'
   include PeriodicalsHelper
   
+protected
+  def publish_resource!
+    resource.publish!(resource.published_at)
+  end
+  
 public
   # Replace the resource_url so that redirects
   # will go to the page (this way, the article
@@ -16,7 +21,7 @@ public
   # Publishes the article
   def publish
     self.resource = find_resource
-    resource.publish!
+    publish_resource!
     flash[:notice] = 'Succesfully published article!'
     redirect_to resource_url
   end
