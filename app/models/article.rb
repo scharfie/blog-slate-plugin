@@ -1,18 +1,13 @@
 class Article < ActiveRecord::Base
-# Acts
+  # Acts
   acts_as_published :versions => 1
   permalink_column :name, :glue => '-'
   compiled_column :body
   
-# Associations
+  # Associations
   belongs_to :blog
+  has_many :comments
   
-# Scopes
-  # named_scope :published, :conditions => ['published_at <= ?', Time.now],
-  #   :order => 'published_at DESC'
-  # named_scope :updated, :conditions => ['updated_at <= ?', Time.now],
-  #   :order => 'updated_at DESC'
-
 public
   # Returns all year-months that articles were published on
   def self.archives
