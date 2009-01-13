@@ -10,7 +10,8 @@ class BlogPlugin < Slate::Plugin
     map.with_space do |space|
       space.resources :blogs do |blog|
         blog.resources :articles, :member => {
-          :publish => :any, :unpublish => :any }
+          :publish => :any, :unpublish => :any 
+        }
       end
     end
     

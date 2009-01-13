@@ -17,6 +17,10 @@ public
     space_page_url @space, @blog.page,
       hash_for_periodical_path(resource)
   end
+
+  response_for :destroy do |wants|
+    wants.html { redirect_to space_blogs_path }
+  end
   
   # Publishes the article
   def publish

@@ -1,6 +1,7 @@
 <% heading 'Blogs' %>
 <% toolbar_link glyph('add') + ' New blog', new_resource_path %>
 
+
 <ul id="blogs" class="tree">
   <% resources.each do |blog| %>
     <li>
@@ -22,8 +23,9 @@
                   <span class="actions">
                   -
                   <%= link_to glyph('pencil'), edit_resource_article_path(blog, article.draft_version) %>
-                  </span>  
-                </li>
+                  <%= link_to glyph('delete'), resource_article_path(blog, article.draft_version), :method => :delete %>
+                  </span>
+                </li>  
               <% end %>
             </ul>
           </td>
@@ -36,6 +38,7 @@
                   <span class="actions">
                   -
                   <%= link_to glyph('pencil'), edit_resource_article_path(blog, article.draft_version) %>
+                  <%= link_to glyph('delete'), resource_article_path(blog, article.draft_version), :method => :delete %>
                   </span>
                 </li>  
               <% end %>
