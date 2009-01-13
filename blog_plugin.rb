@@ -11,7 +11,9 @@ class BlogPlugin < Slate::Plugin
       space.resources :blogs do |blog|
         blog.resources :articles, :member => {
           :publish => :any, :unpublish => :any }
-      end  
+      end
     end
+    
+    map.resources :comments, :only => :create
   end
 end
