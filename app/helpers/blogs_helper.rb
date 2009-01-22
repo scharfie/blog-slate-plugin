@@ -46,7 +46,7 @@ module BlogsHelper
   
   # Returns a link to article (using the article name for text)
   def article_link(article, options={})
-    link_to options[:text] || article.name, periodical_url(article)
+    link_to options.delete(:text) || article.name, periodical_url(article, options)
   end
   
   # Returns nicely formatted date for the article's
@@ -57,5 +57,10 @@ module BlogsHelper
   
   def article_tools(article)
     partial :article_tools, :locals => { :article => article }
+  end
+  
+  def article_comments(article)
+    article.comments.all(:order => 'created_at ASC')
+    
   end
 end
