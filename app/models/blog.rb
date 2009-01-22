@@ -1,3 +1,5 @@
+require_dependency 'space'
+
 class Blog < ActiveRecord::Base
   # Associations
   belongs_to :space
