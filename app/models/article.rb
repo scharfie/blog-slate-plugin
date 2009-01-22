@@ -6,7 +6,6 @@ class Article < ActiveRecord::Base
   
   # Associations
   belongs_to :blog
-  has_many :comments
   
 public
   # Returns all year-months that articles were published on
@@ -17,21 +16,6 @@ public
       :order => "published_at DESC"
     ).map { |e| Archive.new(Time.local(e.year, e.month)) }
   end 
-  
-  # # Publishes the article
-  # def publish!
-  #   update_attribute :published_at, Time.now
-  # end
-  # 
-  # # Unpublishes the article
-  # def unpublish!
-  #   update_attribute :published_at, nil
-  # end
-  
-  # # Returns true if the article is published
-  # def published?
-  #   published_at != nil
-  # end
   
   # Returns custom DOM ID
   def dom_id

@@ -58,9 +58,4 @@ module BlogsHelper
   def article_tools(article)
     partial :article_tools, :locals => { :article => article }
   end
-  
-  def article_comments(article)
-    article.comments.all(:order => 'created_at ASC')
-    
-  end
 end

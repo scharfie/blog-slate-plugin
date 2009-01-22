@@ -14,7 +14,5 @@ class BlogPlugin < Slate::Plugin
         }
       end
     end
-    
-    map.resources :comments, :only => :create
   end
 end
