@@ -15,7 +15,9 @@ protected
   # associates it with the blog via behavior
   def create_page_for_blog
     space.pages.create! :name => name, :behavior => self,
-      :template => 'blog.html.erb'
+      :template => 'blog.html.erb', :_permalinks => [{
+        :name => name.permalink('_')
+      }]
   end
   
 public
