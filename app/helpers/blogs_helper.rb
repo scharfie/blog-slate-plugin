@@ -27,6 +27,7 @@ module BlogsHelper
   
   def show_articles_by_month
     @articles = @blog.articles.published.on_date(params[:year], params[:month])
+    @archive  = Article::Archive.new(Date.new(params[:year].to_i, params[:month].to_i, 1))
     partial :articles_by_month, :object => @articles
   end
   
@@ -51,11 +52,15 @@ module BlogsHelper
   
   # Returns nicely formatted date for the article's
   # published date
-  def article_date(article)
-    (article.published_at || article.updated_at).eztime(':nday, :nmonth :day:ordinal :year &mdash; :hour12::minute :meridian')
+  def article_date(article, format=':nday, :nmonth :day:ordinal :year &mdash; :hour12::minute :meridian')
+    (article.published_at || article.updated_at).eztime(format)
   end
   
   def article_tools(article)
     partial :article_tools, :locals => { :article => article }
+  end
+  
+  def archive_date(format=':nmonth :year')
+    @archive.eztime(format)
   end
 end

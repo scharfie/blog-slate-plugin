@@ -2,10 +2,17 @@ class ArticlesController < ResourcesController
   resources_controller_for :articles, :in => [:space, :blog]
   current_tab 'Blogs'
   include PeriodicalsHelper
+  after_filter :sweep_cache, :except => %w(index edit)
   
 protected
   def publish_resource!
     resource.publish!(resource.published_at)
+  end
+  
+  def sweep_cache
+    Slate::Caching.expire_cache_for_space @space,
+      @blog.page.permalinks,
+      cache_paths_for_periodical(resource)
   end
   
 public
